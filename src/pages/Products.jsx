@@ -48,7 +48,15 @@ const Products = () => {
             .catch(err => console.log(err))
     }
 
-
+    // const manualUpdateProduct = (product) => {
+    //     axios.put(`${api}/${product.id}`, { title : "Updated Title" })
+    //         .then(res => {
+    //             setProducts(products.map(item => item.id === product.id ? res.data : item))
+    //             setTitle('')
+    //             setEditId(null)
+    //         })
+    //         .catch(err => console.log(err))
+    // }
     
   return (
     <div className="product-page">
