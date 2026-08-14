@@ -42,7 +42,6 @@ const RegisterForm = () => {
         }
 
         setErrors(newErrors)
-        setForm({name: '', email: '', mobile: '', dob: '', password: '', cpassword: ''})
     }
 
     console.log(form);
@@ -50,7 +49,20 @@ const RegisterForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        validateForm()
+        const isValid = validateForm()
+
+        if (isValid) {
+            console.log('Form submitted successfully')
+        }
+
+        setForm({
+            name: '',
+            email: '',
+            mobile: '',
+            dob: '',
+            password: '',
+            cpassword: ''
+        })
     }
     
   return (
@@ -68,6 +80,7 @@ const RegisterForm = () => {
     <input type="text" name='mobile' placeholder='Enter Your Mobile' value={form.mobile}
      onChange={(e) => setForm({...form, mobile : e.target.value})}
     /><br />
+    {errors.mobile && <span>{errors.mobile}</span>} <br />
     <input type="date" name='dob' placeholder='Enter Your DOB' value={form.dob}
      onChange={(e) => setForm({...form, dob : e.target.value})}
     /><br />
