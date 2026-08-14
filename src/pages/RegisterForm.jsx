@@ -19,17 +19,34 @@ const RegisterForm = () => {
         if (form.name === '') {
             newErrors.name = 'Name is required'
         }
+        else if (form.name.length < 3) {
+            newErrors.name = 'Name must be at least 3 characters'
+        }
+        else if (!/^[A-Za-z\s]+$/.test(form.name)) {
+            newErrors.name = 'Name must contain only letters and spaces'
+        }
 
         if (form.email === '') {
             newErrors.email = 'Email is required'
+        }
+        else if (
+            !/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(form.email)
+        ) {
+            newErrors.email = 'Invalid email format'
         }
 
         if (form.mobile === '') {
             newErrors.mobile = 'Mobile is required'
         }
+        else if (!/^\d{10}$/.test(form.mobile)) {
+            newErrors.mobile = 'Mobile number must be 10 digits'
+        }
 
         if (form.dob === '') {
             newErrors.dob = 'DOB is required'
+        }
+        else if (new Date(form.dob) > new Date()) {
+            newErrors.dob = 'DOB cannot be in the future'
         }
 
         if (form.password === '') {
@@ -41,8 +58,6 @@ const RegisterForm = () => {
         }
 
         if (
-            form.password !== '' &&
-            form.cpassword !== '' &&
             form.password !== form.cpassword
         ) {
             newErrors.cpassword = 'Passwords do not match'
